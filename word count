@@ -1,0 +1,172 @@
+hdoop@ubuntu:~$ start-all.sh
+WARNING: Attempting to start all Apache Hadoop daemons as hdoop in 10 seconds.
+WARNING: This is not a recommended production deployment configuration.
+WARNING: Use CTRL-C to abort.
+Starting namenodes on [localhost]
+Starting datanodes
+Starting secondary namenodes [ubuntu]
+Starting resourcemanager
+Starting nodemanagers
+hdoop@ubuntu:~$ jps
+2882 DataNode
+4058 Jps
+2746 NameNode
+3501 NodeManager
+3358 ResourceManager
+3086 SecondaryNameNode
+hdoop@ubuntu:~$ eclipse
+org.eclipse.m2e.logback.configuration: The org.eclipse.m2e.logback.configuration bundle was activated before the state location was initialized.  Will retry after the state location is initialized.
+org.eclipse.m2e.logback.configuration: Logback config file: /home/hdoop/eclipse-workspace/.metadata/.plugins/org.eclipse.m2e.logback.configuration/logback.1.14.0.20191209-1925.xml
+org.eclipse.m2e.logback.configuration: Initializing logback
+
+(Eclipse:4313): Gtk-WARNING **: 20:03:53.397: Failed to fetch network locations: Timeout was reached
+hdoop@ubuntu:~$ cd eclipse-workspace/
+hdoop@ubuntu:~/eclipse-workspace$ ls
+Program3  program3.jar
+hdoop@ubuntu:~/eclipse-workspace$ gedit word.txt
+hdoop@ubuntu:~/eclipse-workspace$ ls
+Program3  program3.jar  word.txt
+hdoop@ubuntu:~/eclipse-workspace$ hadoop fs -ls
+Found 7 items
+drwxr-xr-x   - hdoop supergroup          0 2021-05-12 15:50 anusha
+-rw-r--r--   1 hdoop supergroup          0 2021-05-12 14:28 empty.txt
+-rw-r--r--   1 hdoop supergroup          0 2021-05-12 13:42 empty1.txt
+-rw-r--r--   1 hdoop supergroup          0 2021-05-12 13:43 empty2.txt
+drwxr-xr-x   - hdoop supergroup          0 2021-05-12 15:31 manami
+drwxr-xr-x   - hdoop supergroup          0 2021-05-12 15:32 new
+-rw-r--r--   1 hdoop supergroup         40 2021-05-12 21:09 new.txt
+hdoop@ubuntu:~/eclipse-workspace$ ls
+Program3  program3.jar  word.txt
+hdoop@ubuntu:~/eclipse-workspace$ hadoop fs -put word.txt
+2021-05-18 20:33:34,443 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+hdoop@ubuntu:~/eclipse-workspace$ hadoop fs -ls
+Found 8 items
+drwxr-xr-x   - hdoop supergroup          0 2021-05-12 15:50 anusha
+-rw-r--r--   1 hdoop supergroup          0 2021-05-12 14:28 empty.txt
+-rw-r--r--   1 hdoop supergroup          0 2021-05-12 13:42 empty1.txt
+-rw-r--r--   1 hdoop supergroup          0 2021-05-12 13:43 empty2.txt
+drwxr-xr-x   - hdoop supergroup          0 2021-05-12 15:31 manami
+drwxr-xr-x   - hdoop supergroup          0 2021-05-12 15:32 new
+-rw-r--r--   1 hdoop supergroup         40 2021-05-12 21:09 new.txt
+-rw-r--r--   1 hdoop supergroup         58 2021-05-18 20:33 word.txt
+hdoop@ubuntu:~/eclipse-workspace$ hadoop fs -cat word.txt
+2021-05-18 20:35:43,655 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+apple banana mango 
+mango apple banana
+hello good morning
+hdoop@ubuntu:~/eclipse-workspace$ hadoop jar program3.jar WordCount word.txt output3
+2021-05-18 20:38:00,062 INFO client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2021-05-18 20:38:01,475 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+2021-05-18 20:38:01,506 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /tmp/hadoop-yarn/staging/hdoop/.staging/job_1621347728453_0001
+2021-05-18 20:38:01,793 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-05-18 20:38:02,190 INFO input.FileInputFormat: Total input files to process : 1
+2021-05-18 20:38:02,291 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-05-18 20:38:02,357 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-05-18 20:38:02,391 INFO mapreduce.JobSubmitter: number of splits:1
+2021-05-18 20:38:02,721 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-05-18 20:38:02,795 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1621347728453_0001
+2021-05-18 20:38:02,795 INFO mapreduce.JobSubmitter: Executing with tokens: []
+2021-05-18 20:38:03,325 INFO conf.Configuration: resource-types.xml not found
+2021-05-18 20:38:03,325 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
+2021-05-18 20:38:04,281 INFO impl.YarnClientImpl: Submitted application application_1621347728453_0001
+2021-05-18 20:38:04,431 INFO mapreduce.Job: The url to track the job: http://ubuntu:8088/proxy/application_1621347728453_0001/
+2021-05-18 20:38:04,432 INFO mapreduce.Job: Running job: job_1621347728453_0001
+2021-05-18 20:38:22,020 INFO mapreduce.Job: Job job_1621347728453_0001 running in uber mode : false
+2021-05-18 20:38:22,024 INFO mapreduce.Job:  map 0% reduce 0%
+2021-05-18 20:38:31,481 INFO mapreduce.Job:  map 100% reduce 0%
+2021-05-18 20:38:39,620 INFO mapreduce.Job:  map 100% reduce 100%
+2021-05-18 20:38:40,667 INFO mapreduce.Job: Job job_1621347728453_0001 completed successfully
+2021-05-18 20:38:40,938 INFO mapreduce.Job: Counters: 54
+	File System Counters
+		FILE: Number of bytes read=80
+		FILE: Number of bytes written=450987
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=164
+		HDFS: Number of bytes written=50
+		HDFS: Number of read operations=8
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+		HDFS: Number of bytes read erasure-coded=0
+	Job Counters 
+		Launched map tasks=1
+		Launched reduce tasks=1
+		Data-local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=6135
+		Total time spent by all reduces in occupied slots (ms)=5998
+		Total time spent by all map tasks (ms)=6135
+		Total time spent by all reduce tasks (ms)=5998
+		Total vcore-milliseconds taken by all map tasks=6135
+		Total vcore-milliseconds taken by all reduce tasks=5998
+		Total megabyte-milliseconds taken by all map tasks=6282240
+		Total megabyte-milliseconds taken by all reduce tasks=6141952
+	Map-Reduce Framework
+		Map input records=3
+		Map output records=9
+		Map output bytes=93
+		Map output materialized bytes=80
+		Input split bytes=106
+		Combine input records=9
+		Combine output records=6
+		Reduce input groups=6
+		Reduce shuffle bytes=80
+		Reduce input records=6
+		Reduce output records=6
+		Spilled Records=12
+		Shuffled Maps =1
+		Failed Shuffles=0
+		Merged Map outputs=1
+		GC time elapsed (ms)=269
+		CPU time spent (ms)=2680
+		Physical memory (bytes) snapshot=473051136
+		Virtual memory (bytes) snapshot=5119561728
+		Total committed heap usage (bytes)=395837440
+		Peak Map Physical memory (bytes)=284594176
+		Peak Map Virtual memory (bytes)=2557157376
+		Peak Reduce Physical memory (bytes)=188456960
+		Peak Reduce Virtual memory (bytes)=2562404352
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=58
+	File Output Format Counters 
+		Bytes Written=50
+hdoop@ubuntu:~/eclipse-workspace$ hadoop fs -ls
+Found 9 items
+drwxr-xr-x   - hdoop supergroup          0 2021-05-12 15:50 anusha
+-rw-r--r--   1 hdoop supergroup          0 2021-05-12 14:28 empty.txt
+-rw-r--r--   1 hdoop supergroup          0 2021-05-12 13:42 empty1.txt
+-rw-r--r--   1 hdoop supergroup          0 2021-05-12 13:43 empty2.txt
+drwxr-xr-x   - hdoop supergroup          0 2021-05-12 15:31 manami
+drwxr-xr-x   - hdoop supergroup          0 2021-05-12 15:32 new
+-rw-r--r--   1 hdoop supergroup         40 2021-05-12 21:09 new.txt
+drwxr-xr-x   - hdoop supergroup          0 2021-05-18 20:38 output3
+-rw-r--r--   1 hdoop supergroup         58 2021-05-18 20:33 word.txt
+hdoop@ubuntu:~/eclipse-workspace$ hadoop fs -ls output3/
+Found 2 items
+-rw-r--r--   1 hdoop supergroup          0 2021-05-18 20:38 output3/_SUCCESS
+-rw-r--r--   1 hdoop supergroup         50 2021-05-18 20:38 output3/part-r-00000
+hdoop@ubuntu:~/eclipse-workspace$ hadoop fs -cat output3/part-r-00000
+2021-05-18 20:41:17,546 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+apple	2
+banana	2
+good	1
+hello	1
+mango	2
+morning	1
+hdoop@ubuntu:~/eclipse-workspace$ stop-all.sh
+WARNING: Stopping all Apache Hadoop daemons as hdoop in 10 seconds.
+WARNING: Use CTRL-C to abort.
+Stopping namenodes on [localhost]
+Stopping datanodes
+Stopping secondary namenodes [ubuntu]
+Stopping nodemanagers
+localhost: WARNING: nodemanager did not stop gracefully after 5 seconds: Trying to kill with kill -9
+Stopping resourcemanager
+hdoop@ubuntu:~/eclipse-workspace$ 
