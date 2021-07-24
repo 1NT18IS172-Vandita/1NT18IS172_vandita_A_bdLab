@@ -63,7 +63,7 @@ hdoop@ubuntu:~/eclipse-workspace$ hadoop fs -cat word1.txt
 2021-05-19 12:41:14,401 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
 lake river ocean
 ocean lake river
-hi my name is anusha
+hi my name is vandita
 hdoop@ubuntu:~/eclipse-workspace$ hadoop jar program3a.jar WordCount1 word1.txt output3
 2021-05-19 12:45:35,504 INFO client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
 Exception in thread "main" org.apache.hadoop.mapred.FileAlreadyExistsException: Output directory hdfs://127.0.0.1:9000/user/hdoop/output3 already exists
