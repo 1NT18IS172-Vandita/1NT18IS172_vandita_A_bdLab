@@ -1,0 +1,65 @@
+{
+ filter: {
+  _id: 10
+ }
+}
+
+{
+ filter: {
+  _id: 1
+ }
+}
+
+{
+ filter: {
+  Age: {
+   $lte: 20
+  }
+ }
+}
+
+{
+ filter: {
+  Age: {
+   $not: {
+    $eq: 20
+   }
+  }
+ }
+}
+
+{
+ filter: {
+  Age: {
+   $not: {
+    $gt: 24
+   }
+  }
+ }
+}
+
+{
+ filter: {
+  $or: [
+   {
+    Exp: 5
+   },
+   {
+    Exp: 6
+   }
+  ]
+ }
+}
+
+{
+ filter: {
+  $and: [
+   {
+    Lname: 'nayak'
+   },
+   {
+    Exp: 5
+   }
+  ]
+ }
+}
