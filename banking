@@ -1,0 +1,246 @@
+hdoop@ubuntu:~$ cd hadoop-3.2.1/sbin/
+hdoop@ubuntu:~/hadoop-3.2.1/sbin$ ls
+apache-hive-3.1.2-bin         f1.txt                hadoop-daemons.sh        refresh-namenodes.sh  start-dfs.cmd        start-yarn.sh     stop-dfs.cmd        stop-yarn.sh
+apache-hive-3.1.2-bin.tar.gz  f2.txt                httpfs.sh                start-all.cmd         start-dfs.sh         stop-all.cmd      stop-dfs.sh         workers.sh
+distribute-exclude.sh         FederationStateStore  kms.sh                   start-all.sh          start-secure-dns.sh  stop-all.sh       stop-secure-dns.sh  yarn-daemon.sh
+empty.txt                     hadoop-daemon.sh      mr-jobhistory-daemon.sh  start-balancer.sh     start-yarn.cmd       stop-balancer.sh  stop-yarn.cmd       yarn-daemons.sh
+hdoop@ubuntu:~/hadoop-3.2.1/sbin$ ./start-all.sh
+WARNING: Attempting to start all Apache Hadoop daemons as hdoop in 10 seconds.
+WARNING: This is not a recommended production deployment configuration.
+WARNING: Use CTRL-C to abort.
+Starting namenodes on [localhost]
+Starting datanodes
+Starting secondary namenodes [ubuntu]
+Starting resourcemanager
+Starting nodemanagers
+hdoop@ubuntu:~/hadoop-3.2.1/sbin$ jps
+6737 Jps
+5720 DataNode
+5978 SecondaryNameNode
+6189 ResourceManager
+6349 NodeManager
+5567 NameNode
+3967 org.eclipse.equinox.launcher_1.5.600.v20191014-2022.jar
+hdoop@ubuntu:~/hadoop-3.2.1/sbin$ hadoop fs -ls
+Found 11 items
+drwxr-xr-x   - hdoop supergroup          0 2021-05-12 15:50 anusha
+-rw-r--r--   1 hdoop supergroup          0 2021-05-12 14:28 empty.txt
+-rw-r--r--   1 hdoop supergroup          0 2021-05-12 13:42 empty1.txt
+-rw-r--r--   1 hdoop supergroup          0 2021-05-12 13:43 empty2.txt
+drwxr-xr-x   - hdoop supergroup          0 2021-05-12 15:31 manami
+drwxr-xr-x   - hdoop supergroup          0 2021-05-12 15:32 new
+-rw-r--r--   1 hdoop supergroup         40 2021-05-12 21:09 new.txt
+drwxr-xr-x   - hdoop supergroup          0 2021-05-19 12:51 output
+drwxr-xr-x   - hdoop supergroup          0 2021-05-18 20:38 output3
+-rw-r--r--   1 hdoop supergroup         58 2021-05-18 20:33 word.txt
+-rw-r--r--   1 hdoop supergroup         55 2021-05-19 12:31 word1.txt
+hdoop@ubuntu:~/hadoop-3.2.1/sbin$ cd ~/Desktop/
+hdoop@ubuntu:~/Desktop$ ls
+ BankingTransaction2.jar   BankingTransaction.jar  'hdfs assignment-1'   wca-1   wca-2  'word count assignment-1'  'word count assignment-2'
+hdoop@ubuntu:~/Desktop$ ls
+ BankingTransaction2.jar   BankingTransaction.jar  'hdfs assignment-1'   sales.csv   sales_withoutHeader.csv   wca-1   wca-2  'word count assignment-1'  'word count assignment-2'
+hdoop@ubuntu:~/Desktop$ hadoop fs -put sales_withoutHeader.csv
+2021-07-09 19:34:59,524 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+hdoop@ubuntu:~/Desktop$ hadoop fs -ls
+Found 12 items
+drwxr-xr-x   - hdoop supergroup          0 2021-05-12 15:50 anusha
+-rw-r--r--   1 hdoop supergroup          0 2021-05-12 14:28 empty.txt
+-rw-r--r--   1 hdoop supergroup          0 2021-05-12 13:42 empty1.txt
+-rw-r--r--   1 hdoop supergroup          0 2021-05-12 13:43 empty2.txt
+drwxr-xr-x   - hdoop supergroup          0 2021-05-12 15:31 manami
+drwxr-xr-x   - hdoop supergroup          0 2021-05-12 15:32 new
+-rw-r--r--   1 hdoop supergroup         40 2021-05-12 21:09 new.txt
+drwxr-xr-x   - hdoop supergroup          0 2021-05-19 12:51 output
+drwxr-xr-x   - hdoop supergroup          0 2021-05-18 20:38 output3
+-rw-r--r--   1 hdoop supergroup        138 2021-07-09 19:35 sales_withoutHeader.csv
+-rw-r--r--   1 hdoop supergroup         58 2021-05-18 20:33 word.txt
+-rw-r--r--   1 hdoop supergroup         55 2021-05-19 12:31 word1.txt
+hdoop@ubuntu:~/Desktop$ hadoop jar BankingTransaction.jar BankingTransaction.TransactionDriver sales_withoutHeader.csv output1
+2021-07-09 19:38:00,230 INFO client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2021-07-09 19:38:00,554 INFO client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2021-07-09 19:38:00,792 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+2021-07-09 19:38:00,842 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /tmp/hadoop-yarn/staging/hdoop/.staging/job_1625839152273_0001
+2021-07-09 19:38:00,990 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-07-09 19:38:01,122 INFO mapred.FileInputFormat: Total input files to process : 1
+2021-07-09 19:38:01,182 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-07-09 19:38:01,615 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-07-09 19:38:01,635 INFO mapreduce.JobSubmitter: number of splits:2
+2021-07-09 19:38:01,829 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-07-09 19:38:02,249 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1625839152273_0001
+2021-07-09 19:38:02,250 INFO mapreduce.JobSubmitter: Executing with tokens: []
+2021-07-09 19:38:02,522 INFO conf.Configuration: resource-types.xml not found
+2021-07-09 19:38:02,522 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
+2021-07-09 19:38:02,974 INFO impl.YarnClientImpl: Submitted application application_1625839152273_0001
+2021-07-09 19:38:03,032 INFO mapreduce.Job: The url to track the job: http://ubuntu:8088/proxy/application_1625839152273_0001/
+2021-07-09 19:38:03,035 INFO mapreduce.Job: Running job: job_1625839152273_0001
+2021-07-09 19:38:13,278 INFO mapreduce.Job: Job job_1625839152273_0001 running in uber mode : false
+2021-07-09 19:38:13,286 INFO mapreduce.Job:  map 0% reduce 0%
+2021-07-09 19:38:20,407 INFO mapreduce.Job:  map 100% reduce 0%
+2021-07-09 19:38:25,455 INFO mapreduce.Job:  map 100% reduce 100%
+2021-07-09 19:38:25,470 INFO mapreduce.Job: Job job_1625839152273_0001 completed successfully
+2021-07-09 19:38:25,568 INFO mapreduce.Job: Counters: 54
+	File System Counters
+		FILE: Number of bytes read=101
+		FILE: Number of bytes written=677235
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=423
+		HDFS: Number of bytes written=37
+		HDFS: Number of read operations=11
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+		HDFS: Number of bytes read erasure-coded=0
+	Job Counters 
+		Launched map tasks=2
+		Launched reduce tasks=1
+		Data-local map tasks=2
+		Total time spent by all maps in occupied slots (ms)=9111
+		Total time spent by all reduces in occupied slots (ms)=3053
+		Total time spent by all map tasks (ms)=9111
+		Total time spent by all reduce tasks (ms)=3053
+		Total vcore-milliseconds taken by all map tasks=9111
+		Total vcore-milliseconds taken by all reduce tasks=3053
+		Total megabyte-milliseconds taken by all map tasks=9329664
+		Total megabyte-milliseconds taken by all reduce tasks=3126272
+	Map-Reduce Framework
+		Map input records=7
+		Map output records=7
+		Map output bytes=81
+		Map output materialized bytes=107
+		Input split bytes=216
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=4
+		Reduce shuffle bytes=107
+		Reduce input records=7
+		Reduce output records=4
+		Spilled Records=14
+		Shuffled Maps =2
+		Failed Shuffles=0
+		Merged Map outputs=2
+		GC time elapsed (ms)=240
+		CPU time spent (ms)=2150
+		Physical memory (bytes) snapshot=733605888
+		Virtual memory (bytes) snapshot=7667126272
+		Total committed heap usage (bytes)=648544256
+		Peak Map Physical memory (bytes)=275877888
+		Peak Map Virtual memory (bytes)=2553888768
+		Peak Reduce Physical memory (bytes)=188006400
+		Peak Reduce Virtual memory (bytes)=2561892352
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=207
+	File Output Format Counters 
+		Bytes Written=37
+hdoop@ubuntu:~/Desktop$ hadoop fs -ls output1
+Found 2 items
+-rw-r--r--   1 hdoop supergroup          0 2021-07-09 19:38 output1/_SUCCESS
+-rw-r--r--   1 hdoop supergroup         37 2021-07-09 19:38 output1/part-00000
+hdoop@ubuntu:~/Desktop$ hadoop fs -cat output1/part-00000
+2021-07-09 19:41:40,604 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+Disha	1
+Mahesh	3
+Prashanth	2
+Ramya	1
+hdoop@ubuntu:~/Desktop$ hadoop jar BankingTransaction2.jar BankingTransaction.TransactionDriver sales_withoutHeader.csv output2
+2021-07-09 19:43:24,825 INFO client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2021-07-09 19:43:25,050 INFO client.RMProxy: Connecting to ResourceManager at /127.0.0.1:8032
+2021-07-09 19:43:25,243 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+2021-07-09 19:43:25,258 INFO mapreduce.JobResourceUploader: Disabling Erasure Coding for path: /tmp/hadoop-yarn/staging/hdoop/.staging/job_1625839152273_0002
+2021-07-09 19:43:25,351 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-07-09 19:43:25,475 INFO mapred.FileInputFormat: Total input files to process : 1
+2021-07-09 19:43:25,512 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-07-09 19:43:25,541 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-07-09 19:43:25,554 INFO mapreduce.JobSubmitter: number of splits:2
+2021-07-09 19:43:25,664 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+2021-07-09 19:43:25,684 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1625839152273_0002
+2021-07-09 19:43:25,684 INFO mapreduce.JobSubmitter: Executing with tokens: []
+2021-07-09 19:43:25,853 INFO conf.Configuration: resource-types.xml not found
+2021-07-09 19:43:25,853 INFO resource.ResourceUtils: Unable to find 'resource-types.xml'.
+2021-07-09 19:43:25,928 INFO impl.YarnClientImpl: Submitted application application_1625839152273_0002
+2021-07-09 19:43:25,964 INFO mapreduce.Job: The url to track the job: http://ubuntu:8088/proxy/application_1625839152273_0002/
+2021-07-09 19:43:25,966 INFO mapreduce.Job: Running job: job_1625839152273_0002
+2021-07-09 19:43:32,078 INFO mapreduce.Job: Job job_1625839152273_0002 running in uber mode : false
+2021-07-09 19:43:32,082 INFO mapreduce.Job:  map 0% reduce 0%
+2021-07-09 19:43:36,172 INFO mapreduce.Job:  map 100% reduce 0%
+2021-07-09 19:43:43,265 INFO mapreduce.Job:  map 100% reduce 100%
+2021-07-09 19:43:43,295 INFO mapreduce.Job: Job job_1625839152273_0002 completed successfully
+2021-07-09 19:43:43,399 INFO mapreduce.Job: Counters: 54
+	File System Counters
+		FILE: Number of bytes read=101
+		FILE: Number of bytes written=677235
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=423
+		HDFS: Number of bytes written=52
+		HDFS: Number of read operations=11
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+		HDFS: Number of bytes read erasure-coded=0
+	Job Counters 
+		Launched map tasks=2
+		Launched reduce tasks=1
+		Data-local map tasks=2
+		Total time spent by all maps in occupied slots (ms)=5673
+		Total time spent by all reduces in occupied slots (ms)=3025
+		Total time spent by all map tasks (ms)=5673
+		Total time spent by all reduce tasks (ms)=3025
+		Total vcore-milliseconds taken by all map tasks=5673
+		Total vcore-milliseconds taken by all reduce tasks=3025
+		Total megabyte-milliseconds taken by all map tasks=5809152
+		Total megabyte-milliseconds taken by all reduce tasks=3097600
+	Map-Reduce Framework
+		Map input records=7
+		Map output records=7
+		Map output bytes=81
+		Map output materialized bytes=107
+		Input split bytes=216
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=4
+		Reduce shuffle bytes=107
+		Reduce input records=7
+		Reduce output records=4
+		Spilled Records=14
+		Shuffled Maps =2
+		Failed Shuffles=0
+		Merged Map outputs=2
+		GC time elapsed (ms)=170
+		CPU time spent (ms)=1780
+		Physical memory (bytes) snapshot=724885504
+		Virtual memory (bytes) snapshot=7670730752
+		Total committed heap usage (bytes)=649068544
+		Peak Map Physical memory (bytes)=269258752
+		Peak Map Virtual memory (bytes)=2553704448
+		Peak Reduce Physical memory (bytes)=188739584
+		Peak Reduce Virtual memory (bytes)=2564059136
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=207
+	File Output Format Counters 
+		Bytes Written=52
+hdoop@ubuntu:~/Desktop$ hadoop fs -ls output2
+Found 2 items
+-rw-r--r--   1 hdoop supergroup          0 2021-07-09 19:43 output2/_SUCCESS
+-rw-r--r--   1 hdoop supergroup         52 2021-07-09 19:43 output2/part-00000
+hdoop@ubuntu:~/Desktop$ hadoop fs -cat output2/part-00000
+2021-07-09 19:45:15,128 INFO sasl.SaslDataTransferClient: SASL encryption trust check: localHostTrusted = false, remoteHostTrusted = false
+Disha	12000
+Mahesh	8000
+Prashanth	15000
+Ramya	14000
+hdoop@ubuntu:~/Desktop$ 
